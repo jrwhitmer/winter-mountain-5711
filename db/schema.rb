@@ -63,12 +63,12 @@ ActiveRecord::Schema.define(version: 2021_06_15_153739) do
   end
 
   create_table "patient_doctors", force: :cascade do |t|
-    t.bigint "doctors_id"
-    t.bigint "patients_id"
+    t.bigint "doctor_id"
+    t.bigint "patient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["doctors_id"], name: "index_patient_doctors_on_doctors_id"
-    t.index ["patients_id"], name: "index_patient_doctors_on_patients_id"
+    t.index ["doctor_id"], name: "index_patient_doctors_on_doctors_id"
+    t.index ["patient_id"], name: "index_patient_doctors_on_patients_id"
   end
 
   create_table "patients", force: :cascade do |t|
@@ -107,8 +107,8 @@ ActiveRecord::Schema.define(version: 2021_06_15_153739) do
   add_foreign_key "flights", "airlines"
   add_foreign_key "passenger_flights", "flights"
   add_foreign_key "passenger_flights", "passengers"
-  add_foreign_key "patient_doctors", "doctors", column: "doctors_id"
-  add_foreign_key "patient_doctors", "patients", column: "patients_id"
+  add_foreign_key "patient_doctors", "doctors"
+  add_foreign_key "patient_doctors", "patients"
   add_foreign_key "players", "teams"
   add_foreign_key "team_competitions", "competitions"
   add_foreign_key "team_competitions", "teams"

@@ -3,8 +3,8 @@ RSpec.describe 'Doctor show page' do
   before :each do
     @hospital = Hospital.create!(name: "Grady")
 
-    @doctor_1 = Doctor.create!(name: "Dr. Miller", specialty: "Pediatrics", education: "John Hopkins", hospital_id: @hospital.id)
-    @doctor_2 = Doctor.create!(name: "Dr. Amahdi", specialty: "Neurology", education: "Emory", hospital_id: @hospital.id)
+    @doctor_1 = Doctor.create!(name: "Dr. Miller", specialty: "Pediatrics", university: "John Hopkins", hospital_id: @hospital.id)
+    @doctor_2 = Doctor.create!(name: "Dr. Amahdi", specialty: "Neurology", university: "Emory", hospital_id: @hospital.id)
 
     @patient_1 = Patient.create!(name: "Allie Meadows", age: 13)
     @patient_2 = Patient.create!(name: "Remy Larson", age: 22)
@@ -23,14 +23,14 @@ RSpec.describe 'Doctor show page' do
 
     expect(page).to have_content(@doctor_1.name)
     expect(page).to have_content(@doctor_1.specialty)
-    expect(page).to have_content(@doctor_1.education)
+    expect(page).to have_content(@doctor_1.university)
 
     visit "/doctors/#{@doctor_2.id}"
 
 
     expect(page).to have_content(@doctor_2.name)
     expect(page).to have_content(@doctor_2.specialty)
-    expect(page).to have_content(@doctor_2.education)
+    expect(page).to have_content(@doctor_2.university)
   end
 
   it 'displays the name of the hospital the doctor works for' do
