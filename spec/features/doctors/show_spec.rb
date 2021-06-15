@@ -60,13 +60,13 @@ RSpec.describe 'Doctor show page' do
   it 'has a button by each patient name to delete the patient' do
     visit "/doctors/#{@doctor_1.id}"
 
-    within("#patient-#{@patient_1.name}") do
+    within("#patient-#{@patient_1.id}") do
       expect(page).to have_button("Remove Patient")
     end
-    within("#patient-#{@patient_2.name}") do
+    within("#patient-#{@patient_2.id}") do
       expect(page).to have_button("Remove Patient")
     end
-    within("#patient-#{@patient_3.name}") do
+    within("#patient-#{@patient_3.id}") do
       expect(page).to have_button("Remove Patient")
     end
   end
@@ -74,7 +74,7 @@ RSpec.describe 'Doctor show page' do
   it 'refreshes the page without the patient removed when the button is pressed' do
     visit "/doctors/#{@doctor_1.id}"
 
-    within("#patient-#{@patient_1.name}") do
+    within("#patient-#{@patient_1.id}") do
       click_button("Remove Patient")
     end
 
