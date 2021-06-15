@@ -81,4 +81,14 @@ RSpec.describe 'Doctor show page' do
     expect(current_path).to eq("/doctors/#{@doctor_1.id}")
     expect(page).to have_no_content(@patient_1.name)
   end
+
+  it 'does not delete the patient record when the button is pressed' do
+    visit "/doctors/#{@doctor_1.id}"
+
+    within("#patient-#{@patient_2.id}") do
+      click_button("Remove Patient")
+    end
+
+    expect(@patient_2.nil?).to eq(false)
+  end
 end
