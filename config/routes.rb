@@ -3,7 +3,8 @@ Rails.application.routes.draw do
 
   resources :doctors
   resources :hospitals
-
+  resources :patients
+  
   delete '/patient_doctors', to: 'patient_doctors#destroy'
 
 end
