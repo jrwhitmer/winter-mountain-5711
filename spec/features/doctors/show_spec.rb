@@ -56,4 +56,29 @@ RSpec.describe 'Doctor show page' do
     expect(page).to have_content(@patient_2.name)
     expect(page).to have_content(@patient_4.name)
   end
+
+  it 'has a button by each patient name to delete the patient' do
+    visit "/doctors/#{@doctor_1.id}"
+
+    within("#patient-#{@patient_1.name}") do
+      expect(page).to have_button("Remove Patient")
+    end
+    within("#patient-#{@patient_2.name}") do
+      expect(page).to have_button("Remove Patient")
+    end
+    within("#patient-#{@patient_3.name}") do
+      expect(page).to have_button("Remove Patient")
+    end
+  end
+
+  it 'refreshes the page without the patient removed when the button is pressed' do
+    visit "/doctors/#{@doctor_1.id}"
+
+    within("#patient-#{@patient_1.name}") do
+      click_button("Remove Patient")
+    end
+
+    expect(current_path).to eq("/doctors/#{@doctor_1.id}")
+    expect(page).to have_no_content(@patient_1.name)
+  end
 end
